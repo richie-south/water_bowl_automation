@@ -2,31 +2,39 @@
 #include <elapsedMillis.h>
 
 Servo myservo;
-elapsedMillis timeElapsed;
-
-const int analogInPin = A0;
-const int minWaterLevel = 280;
-const int maxWaterLevel = 300;
-
 const int valveClosedPos = 93;
 const int valveFullyOpen = 10;
-
 const int checkIntervall = 10000;
 const unsigned long catShouldDrinkUpDelay = 480000; // 8 min, delay that minimizes the risk of cat drinking water while refilling
-const int valveOpenInterval = 7000; // max time the valve should be open
+const unsigned long sleepAfterFill = 18000000; // 5 hours
 boolean isActive = true; // ability to "stop" the program
-const int in = 4;
 
 void setup() {
-  pinMode(in, in);
-
+  pinMode(4, 4);
   myservo.attach(9);
   myservo.write(valveClosedPos);
 }
 
 boolean isWaterUnderMinLevel() {
-  int rd = digitalRead(in);
-  return rd == HIGH;
+  return digitalRead(in) == HIGH;
+}
+
+void fillWater() {
+  elapsedMillis timeElapsed = 0;
+  const int valveOpenInterval = 9000; // max time the valve should be open
+  myservo.write(valveFullyOpen + 30);
+
+  // checks water level and time valve has been open
+  while(isWaterUnderMinLevel() && timeElapsed < valveOpenInterval) {
+    // filling bowl with water
+  }
+
+  // "stops" program if valve has been open to loong
+  if (timeElapsed >= valveOpenInterval) {
+    isActive = false;
+  }
+
+  myservo.write(valveClosedPos);
 }
 
 void loop() {
@@ -38,21 +46,9 @@ void loop() {
     delay(catShouldDrinkUpDelay);
 
     if (isWaterUnderMinLevel()) {
-
-      timeElapsed = 0;
-      myservo.write(valveFullyOpen + 40);
-
-      while(isWaterUnderMinLevel() && timeElapsed < valveOpenInterval) {
-      }
-
-      if (timeElapsed >= valveOpenInterval) {
-        isActive = false;
-      }
-
-      myservo.write(valveClosedPos);
+      fillWater();
+      delay(sleepAfterFill);
     }
   }
-
-  timeElapsed = 0;
   delay(checkIntervall);
 }
