@@ -9,12 +9,11 @@ The project consist of 3 main parts, 1 arduino uno rev 3 (will be replaced with 
 
 ## How it works
 
-The program on the arduino checks the water level every 10sec. If the water level is below a certain level the program waits for 8 minutes then it checks again. This is to minimize the risk of the cat drinking water while the system refills the bowl. After the 8 min the program will open the valve to the tank and check the water level sensor untill the bowl is full. When the sensor detects that the bowl is full the program will close the valve and continue to check the water level every 10sec. If the valve has been open for 8 or more secs the valve will close and the program will "shutdown". this precaution so that the system wont empty all the water on the floor if an error occurs.
+The program on the arduino checks the water level every 10sec. If the water level is below a certain level the program waits for 8 minutes then it checks again. This is to minimize the risk of the cat drinking water while the system refills the bowl. After the 8 min the program will open the valve to the tank and check the water level sensor untill the bowl is full. When the sensor detects that the bowl is full the program will close the valve and sleep for 5 hours then continue to check the water level every 10sec. If the valve has been open for 9 or more secs the valve will close and the program will "shutdown". this precaution is so that the system wont empty all the water on the floor if an error occurs.
 
 
 ## Part 1
 Connect servo to water tank valve.
-
 
 <img src="https://raw.githubusercontent.com/richie-south/water_bowl_automation/master/media/part_1.gif" width="320">
 
