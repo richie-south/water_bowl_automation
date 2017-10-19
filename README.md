@@ -28,3 +28,11 @@ Read water level from seosor and open valve if low on water.
 Connect the dots.. Read water level from sensor, if water level in bowl is to low, open valve, close valve when water is at fixed level.
 
 <img src="https://raw.githubusercontent.com/richie-south/water_bowl_automation/master/media/part_3.gif" width="320">
+
+## TODO / Future work
+
+ - add count downdisplay, should display following.
+   - Time left to refill.
+   - Time left until program starts checking every 10 sec again.
+   - If program has "shutdown" and needs a restart.
+ - WIFI module that should send info to a rest api on every program event eg, refilling bowl, program "shutdown"...
