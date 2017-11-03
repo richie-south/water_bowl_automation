@@ -31,7 +31,7 @@ Connect the dots.. Read water level from sensor, if water level in bowl is to lo
 
 ## TODO / Future work
 
- - add count downdisplay, should display following.
+ - add countdown display, should display following.
    - Time left to refill.
    - Time left until program starts checking every 10 sec again.
    - If program has "shutdown" and needs a restart.
