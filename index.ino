@@ -6,11 +6,12 @@ const int valveClosedPos = 93;
 const int valveFullyOpen = 10;
 const int checkIntervall = 10000;
 const unsigned long catShouldDrinkUpDelay = 480000; // 8 min, delay that minimizes the risk of cat drinking water while refilling
-const unsigned long sleepAfterFill = 18000000; // 5 hours
+const unsigned long sleepAfterFill = 18000000;
+const int in = 4;
 boolean isActive = true; // ability to "stop" the program
 
 void setup() {
-  pinMode(4, 4);
+  pinMode(in, in);
   myservo.attach(9);
   myservo.write(valveClosedPos);
 }
